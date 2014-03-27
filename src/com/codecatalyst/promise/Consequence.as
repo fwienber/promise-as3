@@ -23,6 +23,8 @@
 package com.codecatalyst.promise
 {
 	import com.codecatalyst.util.optionally;
+	import flash.utils.clearInterval;
+	import flash.utils.setInterval;
 
 	/**
 	 * Consequences are used internally by a Resolver to capture and notify 

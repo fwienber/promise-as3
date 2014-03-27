@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.jangaroo</groupId>
+  <artifactId>promise-as3</artifactId>
+  <version>0.9-1-SNAPSHOT</version>
+
+  <packaging>jangaroo</packaging>
+
+  <prerequisites>
+    <maven>3.0.3</maven>
+  </prerequisites>
+
+  <properties>
+    <jangaroo.plugin.version>2.0.10-SNAPSHOT</jangaroo.plugin.version>
+    <jangaroo.libs.version>2.0.8-SNAPSHOT</jangaroo.libs.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.jangaroo</groupId>
+      <artifactId>jangaroo-runtime</artifactId>
+      <version>${jangaroo.plugin.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.jangaroo</groupId>
+      <artifactId>jangaroo-browser</artifactId>
+      <version>${jangaroo.libs.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.jangaroo</groupId>
+      <artifactId>jooflash-core</artifactId>
+      <version>${jangaroo.libs.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>net.jangaroo</groupId>
+        <artifactId>jangaroo-maven-plugin</artifactId>
+        <version>${jangaroo.plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <excludes>
+            <exclude>**/adapter/AsyncTokenAdapter*.as</exclude>
+            <exclude>**/logger/FlexLogger.as</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
