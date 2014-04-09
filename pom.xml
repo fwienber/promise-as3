@@ -1,20 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>net.jangaroo</groupId>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+    <relativePath />
+  </parent>
+
+  <groupId>net.jangaroo.com.codecatalyst</groupId>
   <artifactId>promise-as3</artifactId>
   <version>0.9-1-SNAPSHOT</version>
+  <description>Jangaroo-compiled version of promise-as3 0.9</description>
+  <url>https://github.com/CodeCatalyst/promise-as3</url>
 
   <packaging>jangaroo</packaging>
+
+  <scm>
+    <url>http://github.com/fwienber/promise-as3</url>
+    <connection>scm:git:git://github.com/fwienber/promise-as3.git</connection>
+    <developerConnection>scm:git:git@github.com:fwienber/promise-as3.git</developerConnection>
+  </scm>
 
   <prerequisites>
     <maven>3.0.3</maven>
   </prerequisites>
 
   <properties>
-    <jangaroo.plugin.version>2.0.10-SNAPSHOT</jangaroo.plugin.version>
-    <jangaroo.libs.version>2.0.8-SNAPSHOT</jangaroo.libs.version>
+    <jangaroo.plugin.version>2.0.9</jangaroo.plugin.version>
+    <jangaroo.libs.version>2.0.8</jangaroo.libs.version>
   </properties>
+
+  <profiles>
+    <profile>
+      <id>release-signing</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
@@ -49,6 +95,56 @@
         </configuration>
       </plugin>
     </plugins>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>1.0-beta-6</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-plugin</artifactId>
+          <version>1.4</version>
+          <configuration>
+            <pushChanges>false</pushChanges>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.4.3</version>
+          <configuration>
+            <includeEmptyDirs>true</includeEmptyDirs>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.4.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
   </build>
 
 </project>
