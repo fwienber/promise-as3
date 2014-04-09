@@ -11,7 +11,7 @@
 
   <groupId>net.jangaroo.com.codecatalyst</groupId>
   <artifactId>promise-as3</artifactId>
-  <version>0.9-1-SNAPSHOT</version>
+  <version>0.9-1</version>
   <description>Jangaroo-compiled version of promise-as3 0.9</description>
   <url>https://github.com/CodeCatalyst/promise-as3</url>
 
